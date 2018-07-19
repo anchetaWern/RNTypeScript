@@ -1,51 +1,77 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * 
- * Generated with the TypeScript template
- * https://github.com/emin93/react-native-template-typescript
- * 
- * @format
- */
+import React, { Component } from "react";
+import { View, Button, Dimensions, StyleSheet, Alert } from "react-native";
+import { RNCamera } from "react-native-camera";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import Card from "./src/components/Card";
+import ActionButton from "./src/components/ActionButton";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends Component {
+  state = {
+    currentImage: null
+  };
 
-interface Props {}
-export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.tsx</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        {this.state.currentImage && (
+          <Card image={this.state.currentImage} label={this.state.imageLabel} />
+        )}
+
+        {this.state.currentImage && (
+          <ActionButton label="Show Camera" action={this.showCamera} />
+        )}
+
+        {!this.state.currentImage && (
+          <RNCamera
+            ref={ref => {
+              this.camera = ref;
+            }}
+            style={styles.preview}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.off}
+            permissionDialogTitle={"Permission to use camera"}
+            permissionDialogMessage={
+              "We need your permission to use your camera phone"
+            }
+          />
+        )}
+
+        {!this.state.currentImage && (
+          <ActionButton label="Take Picture" action={this.takePicture} />
+        )}
       </View>
     );
   }
+
+  takePicture = async () => {
+    if (this.camera) {
+      const data = await this.camera.takePictureAsync();
+
+      this.setState({
+        currentImage: data.uri,
+        imageLabel: data.uri
+      });
+    }
+  };
+
+  showCamera = () => {
+    this.setState({
+      currentImage: null
+    });
+  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: "column",
+    backgroundColor: "#fff"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  preview: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    height: Dimensions.get("window").height,
+    width: Dimensions.get("window").width
+  }
 });
