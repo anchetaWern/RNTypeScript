@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Button, Dimensions, StyleSheet, Alert } from "react-native";
+import { View, Button, Dimensions } from "react-native";
 import { RNCamera } from "react-native-camera";
 
 import Card from "./src/components/Card";
@@ -61,7 +61,7 @@ export default class App extends Component {
   };
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     flexDirection: "column",
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width
   }
-});
+};
