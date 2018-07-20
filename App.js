@@ -61,7 +61,7 @@ export default class App extends Component<Props> {
   };
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     flexDirection: "column",
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width
   }
-});
+};
