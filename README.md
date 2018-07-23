@@ -1,6 +1,8 @@
 # RNTypeScript
 A sample React Native app showing how to use TypeScript.
 
+This is the `standard-rn` branch. It contains the version of the project using the default React Native template (created using `react-native init`). If you want to view the code that's refactored for TypeScript, check out the `master` or `typescript` branch instead.
+
 *Note: the React Native code in this repo may be a little bit outdated and won't run immediately after you've followed the setup instructions. Be sure to refactor the code to use the more recent React / React Native syntax if it doesn't run for you.*
 
 ## Prerequisites
