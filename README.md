@@ -1,6 +1,8 @@
 # RNTypeScript
 A sample React Native app showing how to use TypeScript.
 
+Full tutorial is available at [https://blog.pusher.com/typescript-react-native/](https://blog.pusher.com/typescript-react-native/).
+
 This is the `starter` branch which contains the initial code when you create a new React Native project using the [TypeScript template](https://github.com/emin93/react-native-template-typescript).
 If you want to view the code that's refactored for TypeScript, check out the `master` or `typescript` branch instead.
 
