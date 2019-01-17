@@ -32,6 +32,7 @@ git clone https://github.com/anchetaWern/RNTypeScript.git
 ```
 cd RNTypeScript
 yarn install
+react-native eject
 ```
 
 3. Run the project:
